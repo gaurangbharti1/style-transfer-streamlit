@@ -1,0 +1,4 @@
+wget
+streamlit
+requests
+time
