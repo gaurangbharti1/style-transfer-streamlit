@@ -21,7 +21,7 @@ def fetch_video(job_id):
     }
     data = {
         "job_id": job_id,
-        "project_name": "style_transfer_gpu_main"
+        "project_name": "style_transfer_gpu_20fps"
         }
     response = requests.post(url, headers = headers, json=data)
     data = response.json()['data']
@@ -50,7 +50,7 @@ def check_status(url, interval, job_id):
                     
                 
 def get_jobs():
-    url = "https://v1-api.sievedata.com/v1/projects/style_transfer_gpu_main/jobs"
+    url = "https://v1-api.sievedata.com/v1/projects/style_transfer_gpu_20fps/jobs"
     headers = {
         'X-API-Key': str(st.secrets["SIEVE_API_KEY"])
         }
@@ -66,7 +66,7 @@ def send_data(source_url, image_url, style_weight, content_weight):
     } 
     
     data = {
-        "project_name": "style_transfer_gpu_main",
+        "project_name": "style_transfer_gpu_20fps",
         "source_name": str("input" + str(get_jobs())),
         "source_url": str(source_url),
         "user_metadata": {
@@ -109,7 +109,7 @@ if st.button("Custom Style Transfer"):
         send = send_data(source_url, image_url, style_weight, content_weight)
         if send:
             with st.spinner('Processing Video'):
-                status = check_status('https://v1-api.sievedata.com/v1/projects/style_transfer_gpu_main/jobs', 5, str(send))
+                status = check_status('https://v1-api.sievedata.com/v1/projects/style_transfer_gpu_20fps/jobs', 5, str(send))
                 if (status == True):
                     video = fetch_video(send)
                     st.video(video)
@@ -133,7 +133,7 @@ if col1.button("Use style 1"):
         send = send_data(source_url, image_url, style_weight, content_weight)
         print(send)
         with st.spinner('Processing Video'):
-                status = check_status('https://v1-api.sievedata.com/v1/projects/style_transfer_gpu_main/jobs', 5, str(send))
+                status = check_status('https://v1-api.sievedata.com/v1/projects/style_transfer_gpu_20fps/jobs', 5, str(send))
                 if (status == True):
                     video = fetch_video(send)
                     st.video(video)
@@ -150,7 +150,7 @@ if col2.button("Use style 2"):
         send = send_data(source_url, image_url, style_weight, content_weight)
         print(send)
         with st.spinner('Processing Video'):
-                status = check_status('https://v1-api.sievedata.com/v1/projects/style_transfer_gpu_main/jobs', 5, str(send))
+                status = check_status('https://v1-api.sievedata.com/v1/projects/style_transfer_gpu_20fps/jobs', 5, str(send))
                 if (status == True):
                     video = fetch_video(send)
                     st.video(video)
@@ -166,7 +166,7 @@ if col3.button("Use style 3"):
         send = send_data(source_url, image_url, style_weight, content_weight)
         print(send)
         with st.spinner('Processing Video'):
-                status = check_status('https://v1-api.sievedata.com/v1/projects/style_transfer_gpu_main/jobs', 5, str(send))
+                status = check_status('https://v1-api.sievedata.com/v1/projects/style_transfer_gpu_20fps/jobs', 5, str(send))
                 if (status == True):
                     video = fetch_video(send)
                     st.video(video)
